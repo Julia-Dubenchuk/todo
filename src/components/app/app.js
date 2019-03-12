@@ -69,25 +69,38 @@ export default class App extends Component {
     };
 
     onToggleImportant = (id) => {
-        this.setState(({ todoData })=> {
+        this.setState(({ todoData }) => {
             return {
                 todoData: this.toggleProperty(todoData, id, 'important')
             };
         });
     };
 
-    
+    clickFilter = (propName = false) => {
+        console.log('all', propName);
+        this.setState(({ todoData }) => {
+            const todoFilterData = todoData.filter((el) => {
+                return propName ? el[propName] : true
+            }
+                );
+            console.log(todoData);
+            return {
+                todoData: propName ? todoFilterData : todoData
+            }
+        });
+    };
+
     render() {
 
         const { todoData } = this.state;
         const doneCount = todoData.filter((el) => el.done).length;
         const todoCount = todoData.length - doneCount;
         return (
-            <div className="container col-4 px-0">
+            <div className="container col-6 px-0">
                 <AppHeader toDo={todoCount} done={doneCount} />
                 <div className="top-panel d-flex mb-3">
                     <SearchPanel />
-                    <ItemStatusFilter />
+                    <ItemStatusFilter onClickFilter={this.clickFilter} />
                 </div>
                 <TodoList 
                     todos={todoData}
