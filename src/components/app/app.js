@@ -15,7 +15,6 @@ export default class App extends Component {
             this.createTodoItem('Make Awesome App'),
             this.createTodoItem('Have a lunch')
         ],
-        todoDataimportant: [],
         todoDatadone: null
     };
 
@@ -33,7 +32,8 @@ export default class App extends Component {
             const idx = todoData.findIndex((el) => el.id === id);
             const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)];
             return {
-                todoData: newArray
+                todoData: newArray,
+                todoDatadone: null
             }
         });
     };
@@ -45,7 +45,8 @@ export default class App extends Component {
         this.setState (({ todoData }) => {
             const newArray = [...todoData, newItem];
             return {
-                todoData: newArray
+                todoData: newArray,
+                todoDatadone: null
             };
         });
     };
@@ -65,7 +66,8 @@ export default class App extends Component {
     onToggleDone = (id) => {
         this.setState(({ todoData })=> {
             return {
-                todoData: this.toggleProperty(todoData, id, 'done')
+                todoData: this.toggleProperty(todoData, id, 'done'),
+                todoDatadone: null
             };
         });
     };
@@ -73,7 +75,8 @@ export default class App extends Component {
     onToggleImportant = (id) => {
         this.setState(({ todoData }) => {
             return {
-                todoData: this.toggleProperty(todoData, id, 'important')
+                todoData: this.toggleProperty(todoData, id, 'important'),
+                todoDatadone: null
             };
         });
     };
@@ -96,7 +99,7 @@ export default class App extends Component {
     changeSearch = (value) => {
         this.setState(( {todoData} ) => {
             const newArray = todoData.filter((item) => {
-                return item.label.toLowerCase().indexOf(value) > -1;
+                return item.label.toLowerCase().indexOf(value.toLowerCase()) > -1;
             });
             return {
                 todoDatadone: newArray

@@ -4,6 +4,7 @@ export default class ItemStatusFilter extends Component {
 
     render() {
         const { onClickFilter } = this.props;
+        const classActive = "btn btn-info";
         return (
             <div className="btn-group col-6 px-lg-0">
                 <button type="button" 
