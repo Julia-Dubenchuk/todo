@@ -1,4 +1,7 @@
 .todo-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     font-size: 1.25rem;
 }
 
@@ -8,7 +11,6 @@
 }
 
 .todo-list-item-label {
-    margin-left: 1.25rem;
     line-height: 35px;
     cursor: pointer;
     user-select: none;
